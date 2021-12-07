@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" styleClass="gradient-background" stylesheets="@../../../styles/studentStyle.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.krill_song.StudentStageController">
+   <opaqueInsets>
+      <Insets />
+   </opaqueInsets>
+   <top>
+      <HBox prefHeight="61.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="CENTER" prefHeight="60.0" prefWidth="171.0" styleClass="shadow" stylesheets="@../../../styles/studentStyle.css" text="学 生 界 面" textFill="#6ef5ef">
+               <font>
+                  <Font size="21.0" />
+               </font>
+            </Label>
+            <Pane maxHeight="-Infinity" prefHeight="1.0" prefWidth="200.0" styleClass="line-color" stylesheets="@../../../styles/studentStyle.css" HBox.hgrow="ALWAYS">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <HBox.margin>
+                  <Insets right="5.0" top="30.0" />
+               </HBox.margin>
+            </Pane>
+            <ImageView accessibleRole="BUTTON" fitHeight="48.0" fitWidth="42.0" nodeOrientation="INHERIT" opacity="0.5" pickOnBounds="true" preserveRatio="true" styleClass="shadow" HBox.hgrow="ALWAYS">
+               <image>
+                  <Image url="@../../../images/设置.png" />
+               </image>
+               <HBox.margin>
+                  <Insets left="10.0" right="30.0" top="10.0" />
+               </HBox.margin>
+            </ImageView>
+         </children>
+      </HBox>
+   </top>
+   <left>
+      <VBox prefHeight="200.0" prefWidth="290.0" styleClass="container" stylesheets="@../../../styles/studentStyle.css" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </BorderPane.margin>
+         <children>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <ImageView fitHeight="89.0" fitWidth="86.0" pickOnBounds="true" preserveRatio="true" styleClass="shadow">
+                     <image>
+                        <Image url="@../../../images/狗勾.jpg" />
+                     </image>
+                     <HBox.margin>
+                        <Insets bottom="10.0" left="10.0" top="10.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <VBox prefHeight="100.0" prefWidth="199.0" HBox.hgrow="ALWAYS">
+                     <children>
+                        <Label alignment="CENTER" prefHeight="32.0" prefWidth="202.0" styleClass="shadow" stylesheets="@../../../styles/studentStyle.css" text="Jiahui Song" textAlignment="CENTER" textFill="#6ef5ef">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets top="18.0" />
+                           </VBox.margin>
+                        </Label>
+                        <Label alignment="CENTER" prefHeight="35.0" prefWidth="196.0" styleClass="shadow" stylesheets="@../../../styles/studentStyle.css" text="2202004432" textFill="#6dcbf5">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </Label>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <Pane maxHeight="-Infinity" prefHeight="1.0" prefWidth="200.0" styleClass="line-color" stylesheets="@../../../styles/studentStyle.css">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <VBox.margin>
+                  <Insets left="15.0" right="15.0" />
+               </VBox.margin>
+            </Pane>
+            <VBox prefHeight="514.0" prefWidth="290.0">
+               <children>
+                  <HBox prefHeight="100.0" prefWidth="200.0" stylesheets="@../../../styles/studentStyle.css">
+                     <children>
+                        <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true" styleClass="shadow">
+                           <image>
+                              <Image url="@../../../images/主页.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets left="60.0" top="35.0" />
+                           </HBox.margin>
+                        </ImageView>
+                        <Label alignment="CENTER" prefHeight="32.0" prefWidth="137.0" styleClass="shadow" stylesheets="@../../../styles/studentStyle.css" text="主 界 面" textAlignment="CENTER" textFill="#6ef5ef">
+                           <font>
+                              <Font size="22.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets top="35.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                     <styleClass>
+                        <String fx:value="button-container-mouse-moved" />
+                        <String fx:value="selected-button-container" />
+                     </styleClass>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox prefHeight="100.0" prefWidth="200.0" styleClass="button-container-mouse-moved" stylesheets="@../../../styles/studentStyle.css">
+                     <children>
+                        <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true" styleClass="shadow">
+                           <image>
+                              <Image url="@../../../images/收件箱.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets left="60.0" top="35.0" />
+                           </HBox.margin>
+                        </ImageView>
+                        <Label alignment="CENTER" prefHeight="32.0" prefWidth="137.0" styleClass="shadow" stylesheets="@../../../styles/studentStyle.css" text="收 件 箱" textAlignment="CENTER" textFill="#6ef5ef">
+                           <font>
+                              <Font size="22.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets top="35.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox prefHeight="100.0" prefWidth="200.0" styleClass="button-container-mouse-moved" stylesheets="@../../../styles/studentStyle.css">
+                     <children>
+                        <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true" styleClass="shadow">
+                           <image>
+                              <Image url="@../../../images/待办.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets left="60.0" top="35.0" />
+                           </HBox.margin>
+                        </ImageView>
+                        <Label alignment="CENTER" prefHeight="32.0" prefWidth="137.0" styleClass="shadow" stylesheets="@../../../styles/studentStyle.css" text="活  动" textAlignment="CENTER" textFill="#6ef5ef">
+                           <font>
+                              <Font size="22.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets top="35.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox fx:id="ScheduleButton" accessibleRole="BUTTON" accessibleText="是" onMouseClicked="#ChangeToScheduleSceneOnAction" prefHeight="100.0" prefWidth="200.0" styleClass="button-container-mouse-moved" stylesheets="@../../../styles/studentStyle.css">
+                     <children>
+                        <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true" styleClass="shadow">
+                           <image>
+                              <Image url="@../../../images/日程.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets left="60.0" top="35.0" />
+                           </HBox.margin>
+                        </ImageView>
+                        <Label alignment="CENTER" prefHeight="32.0" prefWidth="137.0" styleClass="shadow" stylesheets="@../../../styles/studentStyle.css" text="日  程" textAlignment="CENTER" textFill="#6ef5ef">
+                           <font>
+                              <Font size="22.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets top="35.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+   </left>
+   <center>
+      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets bottom="10.0" top="10.0" />
+         </BorderPane.margin>
+         <children>
+            <VBox prefHeight="294.0" prefWidth="985.0" styleClass="container" stylesheets="@../../../styles/studentStyle.css">
+               <VBox.margin>
+                  <Insets bottom="15.0" right="10.0" />
+               </VBox.margin>
+               <children>
+                  <Label alignment="CENTER" prefHeight="29.0" prefWidth="132.0" styleClass="shadow" stylesheets="@../../../styles/studentStyle.css" text="最新消息" textAlignment="CENTER" textFill="#6ef5ef">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+            <HBox prefHeight="371.0" prefWidth="995.0">
+               <children>
+                  <VBox prefHeight="371.0" prefWidth="576.0" styleClass="container" stylesheets="@../../../styles/studentStyle.css" HBox.hgrow="ALWAYS">
+                     <children>
+                        <Label alignment="CENTER" prefHeight="29.0" prefWidth="132.0" styleClass="shadow" stylesheets="@../../../styles/studentStyle.css" text="各项成绩" textAlignment="CENTER" textFill="#6ef5ef">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets top="5.0" />
+                           </VBox.margin>
+                        </Label>
+                        <BarChart prefHeight="343.0" prefWidth="596.0" styleClass="shadow" stylesheets="@../../../styles/studentStyle.css">
+                          <xAxis>
+                            <CategoryAxis side="BOTTOM" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis side="LEFT" />
+                          </yAxis>
+                        </BarChart>
+                     </children>
+                     <HBox.margin>
+                        <Insets left="5.0" right="5.0" />
+                     </HBox.margin>
+                  </VBox>
+                  <VBox prefHeight="371.0" prefWidth="420.0" styleClass="container" stylesheets="@../../../styles/studentStyle.css">
+                     <HBox.margin>
+                        <Insets left="5.0" right="10.0" />
+                     </HBox.margin>
+                     <children>
+                        <Label alignment="CENTER" prefHeight="29.0" prefWidth="132.0" styleClass="shadow" stylesheets="@../../../styles/studentStyle.css" text="统计" textAlignment="CENTER" textFill="#6ef5ef">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </center>
+</BorderPane>

@@ -1,0 +1,443 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXListView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" styleClass="gradient-background1" stylesheets="@../../styles/studentStyle.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="schedule_module.ScheduleController">
+   <opaqueInsets>
+      <Insets />
+   </opaqueInsets>
+   <top>
+      <HBox prefHeight="61.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="CENTER" prefHeight="60.0" prefWidth="171.0" styleClass="shadow" stylesheets="@../../styles/studentStyle.css" text="日    程" textFill="#6ef5ef">
+               <font>
+                  <Font size="21.0" />
+               </font>
+            </Label>
+            <Pane maxHeight="-Infinity" prefHeight="1.0" prefWidth="200.0" styleClass="line-color" stylesheets="@../../styles/studentStyle.css" HBox.hgrow="ALWAYS">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <HBox.margin>
+                  <Insets right="5.0" top="30.0" />
+               </HBox.margin>
+            </Pane>
+            <JFXButton fx:id="returnHomeButton" onAction="#returnHomeButtonOnAction" prefHeight="55.0" prefWidth="55.0" text="BACK" textFill="WHITE">
+               <HBox.margin>
+                  <Insets right="10.0" top="5.0" />
+               </HBox.margin>
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </JFXButton>
+         </children>
+      </HBox>
+   </top>
+   <left>
+      <VBox prefHeight="200.0" prefWidth="290.0" styleClass="container" stylesheets="@../../styles/studentStyle.css" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </BorderPane.margin>
+         <children>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <ImageView fitHeight="89.0" fitWidth="86.0" pickOnBounds="true" preserveRatio="true" styleClass="shadow">
+                     <image>
+                        <Image url="@../../images/狗勾.jpg" />
+                     </image>
+                     <HBox.margin>
+                        <Insets bottom="10.0" left="10.0" top="10.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <VBox prefHeight="100.0" prefWidth="199.0" HBox.hgrow="ALWAYS">
+                     <children>
+                        <Label alignment="CENTER" prefHeight="32.0" prefWidth="202.0" styleClass="shadow" stylesheets="@../../styles/studentStyle.css" text="Jiahui Song" textAlignment="CENTER" textFill="#6ef5ef">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets top="18.0" />
+                           </VBox.margin>
+                        </Label>
+                        <Label alignment="CENTER" prefHeight="35.0" prefWidth="196.0" styleClass="shadow" stylesheets="@../../styles/studentStyle.css" text="2202004432" textFill="#6dcbf5">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </Label>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <Pane maxHeight="-Infinity" prefHeight="1.0" prefWidth="200.0" styleClass="line-color" stylesheets="@../../styles/studentStyle.css">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <VBox.margin>
+                  <Insets left="15.0" right="15.0" />
+               </VBox.margin>
+            </Pane>
+            <VBox prefHeight="536.0" prefWidth="290.0">
+               <children>
+                  <Pane maxHeight="-Infinity" prefHeight="8.0" prefWidth="290.0" styleClass="line-color" stylesheets="@../../styles/studentStyle.css">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </Pane>
+                  <HBox prefHeight="50.0" prefWidth="290.0">
+                     <children>
+                        <JFXButton fx:id="deleteButton" layoutX="10.0" layoutY="10.0" onAction="#deleteButtonOnAction" prefHeight="45.0" prefWidth="204.0" text="删 除" textFill="#fffefe">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </JFXButton>
+                        <JFXButton fx:id="showDetailButton" layoutX="10.0" layoutY="10.0" onAction="#showDetailButtonOnAction" prefHeight="45.0" prefWidth="196.0" text="查 看" textFill="WHITE">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </JFXButton>
+                     </children>
+                  </HBox>
+                  <TabPane prefHeight="494.0" prefWidth="290.0" stylesheets="@../../styles/studentStyle.css" tabClosingPolicy="UNAVAILABLE">
+                    <tabs>
+                      <Tab fx:id="showAllTabButton" text="查 看 所 有 日 程">
+                           <content>
+                              <JFXListView fx:id="listViewSchedule" />
+                           </content>
+                      </Tab>
+                      <Tab fx:id="showExamTab" text="查 看 考 试 安 排">
+                           <content>
+                              <JFXListView />
+                           </content>
+                      </Tab>
+                    </tabs>
+                  </TabPane>
+               </children></VBox>
+         </children>
+      </VBox>
+   </left>
+   <center>
+      <VBox prefHeight="200.0" prefWidth="100.0" styleClass="container" stylesheets="@../../styles/studentStyle.css" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets bottom="10.0" right="10.0" top="10.0" />
+         </BorderPane.margin>
+         <children>
+            <HBox prefHeight="84.0" prefWidth="760.0" VBox.vgrow="ALWAYS">
+               <children>
+                  <JFXButton fx:id="addNewButton" onAction="#onButtonAddNewClicked" prefHeight="76.0" prefWidth="195.0" styleClass="container" stylesheets="@../../styles/studentStyle.css" text="新 增 日 程" textFill="WHITE" HBox.hgrow="ALWAYS">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="50.0" />
+                     </HBox.margin>
+                  </JFXButton>
+                  <Label fx:id="labelYear" alignment="CENTER" prefHeight="76.0" prefWidth="200.0" text="2021" textFill="#bab1b1" HBox.hgrow="ALWAYS">
+                     <font>
+                        <Font size="48.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="10.0" right="10.0" />
+                     </HBox.margin>
+                  </Label>
+                  <JFXButton fx:id="lastMonthButton" ellipsisString="" onAction="#onButtonLastMonthClicked" prefHeight="76.0" prefWidth="150.0" ripplerFill="WHITE" styleClass="container" text="&lt;" textFill="WHITE" HBox.hgrow="ALWAYS">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                     <font>
+                        <Font name="System Bold" size="36.0" />
+                     </font>
+                  </JFXButton>
+                  <Label fx:id="labelMonth" alignment="CENTER" prefHeight="115.0" prefWidth="150.0" text="11 月" textFill="#ffd900">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <JFXButton fx:id="nextMonthButton" layoutX="153.0" layoutY="10.0" onAction="#onButtonNextMonthClicked" prefHeight="87.0" prefWidth="150.0" styleClass="container" text="&gt;" textFill="WHITE" HBox.hgrow="ALWAYS">
+                     <HBox.margin>
+                        <Insets right="20.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font name="System Bold" size="36.0" />
+                     </font>
+                  </JFXButton>
+               </children>
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+            </HBox>
+            <Pane prefHeight="550.0" prefWidth="760.0" VBox.vgrow="ALWAYS">
+               <children>
+                  <AnchorPane layoutY="58.0" prefHeight="494.0" prefWidth="761.0">
+                     <children>
+                        <GridPane fx:id="gridPane" layoutX="34.0" layoutY="20.0" prefHeight="474.0" prefWidth="956.0" styleClass="gridPaneBorder" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-195.0" AnchorPane.topAnchor="10.0">
+                           <columnConstraints>
+                              <ColumnConstraints fx:id="row" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <children>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #CCCCCC; -fx-border-width: 1 1 1 0;">
+                                 <padding>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </padding>
+                              </AnchorPane>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #CCCCCC; -fx-border-width: 1 1 1 0;" GridPane.columnIndex="1">
+                                 <padding>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </padding>
+                              </AnchorPane>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #CCCCCC; -fx-border-width: 1 1 1 0;" GridPane.columnIndex="2">
+                                 <padding>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </padding>
+                              </AnchorPane>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #CCCCCC; -fx-border-width: 1 1 1 0;" GridPane.columnIndex="3">
+                                 <padding>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </padding>
+                              </AnchorPane>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #CCCCCC; -fx-border-width: 1 1 1 0;" GridPane.columnIndex="4">
+                                 <padding>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </padding>
+                              </AnchorPane>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #CCCCCC; -fx-border-width: 1 1 1 0;" GridPane.columnIndex="5">
+                                 <padding>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </padding>
+                              </AnchorPane>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #CCCCCC; -fx-border-width: 1 1 1 0;" GridPane.columnIndex="6">
+                                 <padding>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </padding>
+                              </AnchorPane>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #CCCCCC; -fx-border-width: 0 1 1 0;" GridPane.rowIndex="1">
+                                 <padding>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </padding>
+                              </AnchorPane>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #CCCCCC; -fx-border-width: 0 1 1 0;" GridPane.rowIndex="2">
+                                 <padding>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </padding>
+                              </AnchorPane>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #CCCCCC; -fx-border-width: 0 1 1 0;" GridPane.rowIndex="3">
+                                 <padding>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </padding>
+                              </AnchorPane>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #CCCCCC; -fx-border-width: 0 1 1 0;" GridPane.rowIndex="4">
+                                 <padding>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </padding>
+                              </AnchorPane>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #CCCCCC; -fx-border-width: 0 1 1 0;" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                 <padding>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </padding>
+                              </AnchorPane>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #CCCCCC; -fx-border-width: 0 1 1 0;" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                 <padding>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </padding>
+                              </AnchorPane>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #CCCCCC; -fx-border-width: 0 1 1 0;" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                 <padding>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </padding>
+                              </AnchorPane>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #CCCCCC; -fx-border-width: 0 1 1 0;" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                                 <padding>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </padding>
+                              </AnchorPane>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #CCCCCC; -fx-border-width: 0 1 1 0;" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                 <padding>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </padding>
+                              </AnchorPane>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #CCCCCC; -fx-border-width: 0 1 1 0;" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                                 <padding>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </padding>
+                              </AnchorPane>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #CCCCCC; -fx-border-width: 0 1 1 0;" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                                 <padding>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </padding>
+                              </AnchorPane>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #CCCCCC; -fx-border-width: 0 1 1 0;" GridPane.columnIndex="2" GridPane.rowIndex="4">
+                                 <padding>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </padding>
+                              </AnchorPane>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #CCCCCC; -fx-border-width: 0 1 1 0;" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                                 <padding>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </padding>
+                              </AnchorPane>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #CCCCCC; -fx-border-width: 0 1 1 0;" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                                 <padding>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </padding>
+                              </AnchorPane>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #CCCCCC; -fx-border-width: 0 1 1 0;" GridPane.columnIndex="3" GridPane.rowIndex="3">
+                                 <padding>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </padding>
+                              </AnchorPane>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #CCCCCC; -fx-border-width: 0 1 1 0;" GridPane.columnIndex="3" GridPane.rowIndex="4">
+                                 <padding>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </padding>
+                              </AnchorPane>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #CCCCCC; -fx-border-width: 0 1 1 0;" GridPane.columnIndex="4" GridPane.rowIndex="1">
+                                 <padding>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </padding>
+                              </AnchorPane>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #CCCCCC; -fx-border-width: 0 1 1 0;" GridPane.columnIndex="4" GridPane.rowIndex="2">
+                                 <padding>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </padding>
+                              </AnchorPane>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #CCCCCC; -fx-border-width: 0 1 1 0;" GridPane.columnIndex="4" GridPane.rowIndex="3">
+                                 <padding>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </padding>
+                              </AnchorPane>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #CCCCCC; -fx-border-width: 0 1 1 0;" GridPane.columnIndex="4" GridPane.rowIndex="4">
+                                 <padding>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </padding>
+                              </AnchorPane>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #CCCCCC; -fx-border-width: 0 1 1 0;" GridPane.columnIndex="5" GridPane.rowIndex="1">
+                                 <padding>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </padding>
+                              </AnchorPane>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #CCCCCC; -fx-border-width: 0 1 1 0;" GridPane.columnIndex="5" GridPane.rowIndex="2">
+                                 <padding>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </padding>
+                              </AnchorPane>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #CCCCCC; -fx-border-width: 0 1 1 0;" GridPane.columnIndex="5" GridPane.rowIndex="3">
+                                 <padding>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </padding>
+                              </AnchorPane>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #CCCCCC; -fx-border-width: 0 1 1 0;" GridPane.columnIndex="5" GridPane.rowIndex="4">
+                                 <padding>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </padding>
+                              </AnchorPane>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #CCCCCC; -fx-border-width: 0 1 1 0;" GridPane.columnIndex="6" GridPane.rowIndex="1">
+                                 <padding>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </padding>
+                              </AnchorPane>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #CCCCCC; -fx-border-width: 0 1 1 0;" GridPane.columnIndex="6" GridPane.rowIndex="2">
+                                 <padding>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </padding>
+                              </AnchorPane>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #CCCCCC; -fx-border-width: 0 1 1 0;" GridPane.columnIndex="6" GridPane.rowIndex="3">
+                                 <padding>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </padding>
+                              </AnchorPane>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #CCCCCC; -fx-border-width: 0 1 1 0;" GridPane.columnIndex="6" GridPane.rowIndex="4">
+                                 <padding>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </padding>
+                              </AnchorPane>
+                           </children>
+                           <opaqueInsets>
+                              <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+                           </opaqueInsets>
+                        </GridPane>
+                     </children>
+                     <padding>
+                        <Insets bottom="10.0" right="10.0" top="10.0" />
+                     </padding>
+                  </AnchorPane>
+                  <Label layoutX="46.0" layoutY="30.0" styleClass="shadow" stylesheets="@../../styles/studentStyle.css" text="Mon" textFill="#130257">
+                     <font>
+                        <Font name="Franklin Gothic Medium" size="24.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="186.0" layoutY="30.0" styleClass="shadow" stylesheets="@../../styles/studentStyle.css" text="Tue" textFill="#130257">
+                     <font>
+                        <Font name="Franklin Gothic Medium" size="24.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="316.0" layoutY="30.0" styleClass="shadow" stylesheets="@../../styles/studentStyle.css" text="Wed" textFill="#130257">
+                     <font>
+                        <Font name="Franklin Gothic Medium" size="24.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="452.0" layoutY="30.0" styleClass="shadow" stylesheets="@../../styles/studentStyle.css" text="Thu" textFill="#130257">
+                     <font>
+                        <Font name="Franklin Gothic Medium" size="24.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="595.0" layoutY="30.0" styleClass="shadow" stylesheets="@../../styles/studentStyle.css" text="Fri" textFill="#130257">
+                     <font>
+                        <Font name="Franklin Gothic Medium" size="24.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="729.0" layoutY="30.0" styleClass="shadow" stylesheets="@../../styles/studentStyle.css" text="Sat" textFill="#130257">
+                     <font>
+                        <Font name="Franklin Gothic Medium" size="24.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="854.0" layoutY="30.0" styleClass="shadow" stylesheets="@../../styles/studentStyle.css" text="Sun" textFill="#130257">
+                     <font>
+                        <Font name="Franklin Gothic Medium" size="24.0" />
+                     </font>
+                  </Label>
+                  <Pane layoutX="9.0" layoutY="8.0" maxHeight="-Infinity" prefHeight="2.0" prefWidth="945.0" styleClass="line-color" stylesheets="@../../styles/studentStyle.css">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </Pane>
+               </children>
+            </Pane>
+         </children>
+      </VBox>
+   </center>
+</BorderPane>

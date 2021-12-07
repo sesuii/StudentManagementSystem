@@ -1,0 +1,36 @@
+.gradient-background1{
+    -fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #0442BF, #0442BF);
+}
+.gradient-background{
+    -fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #0442BF, #44AFF2);
+}
+.line-color{
+    -fx-background-color:#B5CFFE;
+}
+.container{
+    -fx-background-color:rgba(255,255,255,0.2);
+    -fx-background-radius:10;
+}
+.shadow{
+    -fx-effect: dropShadow(three-pass-box, rgba(0,0,0,0.2), 10.0, 0.0, 0.0, 10.0);
+}
+.selected-button-container{
+    -fx-background-color: rgba(255, 255, 255, 0.15);
+}
+.button-container-mouse-moved: hover{
+    -fx-background-color: rgba(255, 255, 255, 0.1);
+}
+.selectedDate{
+    -fx-background-color: #a181f9;
+}
+.dateNow{
+    -fx-background-color:  #e0ea4e
+}
+.dialog-accept {
+    -fx-background-color:#B5CFFE;
+    -fx-text-fill: #03A9F4;
+    -fx-font-weight: BOLD;
+    -fx-padding: 0.7em 0.8em;
+}
+
+
