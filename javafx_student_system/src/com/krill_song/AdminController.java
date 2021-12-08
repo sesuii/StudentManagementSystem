@@ -52,7 +52,7 @@ public class AdminController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        NewStudentClassBox.getItems().addAll("软件201", "软件202", "软件203", "软件204", "软件205", "软件206");
+        NewStudentClassBox.getItems().addAll("软件工程201", "软件工程202", "软件工程203", "软件工程204", "软件工程205", "软件工程206");
         iniTreeTableView();
 
     }
@@ -154,7 +154,7 @@ public class AdminController implements Initializable {
         treeView.prefWidthProperty().bind(centerFlowPane.widthProperty());
         treeView.prefHeightProperty().bind(centerFlowPane.heightProperty());
         centerFlowPane.getChildren().add(treeView);
-
+        treeView.getStylesheets().add(AdminController.class.getResource("/styles/studentStyle.css").toExternalForm());
         treeView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
             @Override
             public void changed(ObservableValue observable, Object oldValue, Object newValue) {
@@ -192,7 +192,7 @@ public class AdminController implements Initializable {
     **/
     private void iniNumberColumn(JFXTreeTableColumn<AdminViewData, Number> ...column) {
         for (int i = 0; i < column.length; i++) {
-            column[i].setPrefWidth(150);
+            column[i].setPrefWidth(160);
             int finalI = i;
             column[i].setCellValueFactory((TreeTableColumn.CellDataFeatures<AdminViewData, Number> param) -> {
                 if (column[finalI].validateValue(param)) {
@@ -211,7 +211,7 @@ public class AdminController implements Initializable {
     **/
     private void iniStringColumn(JFXTreeTableColumn<AdminViewData, String>... column) {
         for (int i = 0; i < column.length; i++) {
-            column[i].setPrefWidth(150);
+            column[i].setPrefWidth(160);
             if (i > 0) column[i].setSortable(false);
             int finalI = i;
             column[i].setCellValueFactory((TreeTableColumn.CellDataFeatures<AdminViewData, String> param) -> {

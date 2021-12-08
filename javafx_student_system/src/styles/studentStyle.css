@@ -33,3 +33,13 @@
     -fx-padding: 0.7em 0.8em;
 }
 
+// tree-table-view CSS 官方文档
+.tree-table-view {
+    -fx-text-fill: #03A9F4;
+    -fx-font-weight: BOLD;
+    -fx-font-size: 16px;
+    -fx-background-radius: 5;
+    -fx-tree-table-color: rgba(255, 0, 0, 0.2);
+    -fx-tree-table-rippler-color: rgba(255, 0, 0, 0.4);
+}
+
