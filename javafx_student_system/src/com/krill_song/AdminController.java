@@ -6,72 +6,105 @@ package com.krill_song;
  @ Version: 1.0
 __________________________*/
 
+import com.jfoenix.controls.*;
+import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import dbcp.DBCPUtil;
-import dbcp.DBConnection;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.FlowPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import javafx.util.Callback;
-
 import java.io.File;
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+
 public class AdminController implements Initializable {
+
+    public static ObservableList<AdminViewData> adminViewData = FXCollections.observableArrayList();
     @FXML
-    private TableView<AdminTableView> formList;
-    @FXML
-    private TableColumn<AdminTableView, String> column_index;
-    @FXML
-    private TableColumn<AdminTableView, String> columnStuId;
-    @FXML
-    private TableColumn<AdminTableView, String> columnStuClass;
-    @FXML
-    private TableColumn<AdminTableView, String> columnStuName;
-    @FXML
-    private TableColumn<AdminTableView, Integer> columnStuTotalGrade;
-    @FXML
-    private TableColumn<AdminTableView, Integer> columnStuClassRank;
-    @FXML
-    private TableColumn<AdminTableView, Integer> columnStuMajorRank;
-    @FXML
-    private ComboBox<?> chooseTotalButton;
-    @FXML
-    private TextField searchStuField;
-    @FXML
-    private Button searchButton;
-    @FXML
-    private Button addButton;
-    @FXML
-    private Button deleteButton;
-    @FXML
-    private Button refreshButton;
-    @FXML
-    private ComboBox<?> chooseClassButton;
+    private FlowPane centerFlowPane;
     @FXML
     private Button loadingStudentButton;
     @FXML
     private Button chooseFileButton;
     @FXML
     private TextField csvFileTextField = null;
+    @FXML
+    private JFXTextField searchTextField;
+    @FXML
+    private JFXTextField newStudentIdText;
+    @FXML
+    private JFXTextField newStudentText;
+    @FXML
+    private JFXToggleButton isGroupTogButton;
+    @FXML
+    private JFXComboBox<String> NewStudentClassBox;
+    private AdminViewData clickedRow = null;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        iniTableView();
-    }
+        NewStudentClassBox.getItems().addAll("软件201", "软件202", "软件203", "软件204", "软件205", "软件206");
+        iniTreeTableView();
 
+    }
     /**
-    * @param: [javafx.event.ActionEvent]
+    * @param: [event]
     * @return: void
-    * @description: 打开本地文件选择器，选择需要导入的.csv文件
-    * @date:2021/12/7
+    * @description:添加学生信息
+    * @date:2021/12/8
     **/
+    @FXML
+    void addNewOnAction(MouseEvent event) {
+        if(NewStudentClassBox.getSelectionModel().isEmpty() || newStudentText.getText().isEmpty() || newStudentIdText.getText().isEmpty()) return;
+        String forClass = NewStudentClassBox.getSelectionModel().getSelectedItem();
+        AdminViewData newData = new AdminViewData(newStudentIdText.getText(), newStudentText.getText(), forClass, -1, -1, -1);
+        adminViewData.add(newData);
+        String sql = "insert into student_user() Values(?, ?, ?, ?, ?);";
+        try {
+            int updateData = DBCPUtil.insert(sql, newData);
+            System.out.println("添加学生数：" + updateData);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        newStudentText.clear();
+        newStudentIdText.clear();
+        NewStudentClassBox.getSelectionModel().clearSelection();
+    }
+    /**
+    * @param: [event]
+    * @return: void
+    * @description:删除选中学生
+    * @date:2021/12/8
+    **/
+    @FXML
+    void deleteStudentOnAction(MouseEvent event) {
+        if(clickedRow != null && adminViewData.contains(clickedRow)) adminViewData.remove(clickedRow);
+        String sql = "delete from student_user where account_id = ?";
+        try {
+            DBCPUtil.delete(sql, clickedRow);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    @FXML
+    void refreshViewOnAction(MouseEvent event) {
+        loadViewDate();
+    }
+    /**
+     * @param: [javafx.event.ActionEvent]
+     * @return: void
+     * @description: 打开本地文件选择器，选择需要导入的.csv文件
+     * @date:2021/12/7
+     **/
     @FXML
     void chooseFile(ActionEvent event) {
         Stage primaryStage = new Stage();
@@ -80,20 +113,20 @@ public class AdminController implements Initializable {
         fileChooser.getExtensionFilters().add(extFilter);
         File file = fileChooser.showOpenDialog(primaryStage);
         System.out.println(file);
-        if(file.exists()) csvFileTextField.setText(String.valueOf(file));
-
+        if (file.exists()) csvFileTextField.setText(String.valueOf(file));
     }
+
     /**
-    * @param: [javafx.event.ActionEvent]
-    * @return: void
-    * @description:点击导入学生池按钮，将文件导入到数据库中
-    * @date:2021/12/7
-    **/
+     * @param: [event]
+     * @return: void
+     * @description: 获取并导入 csv 文件到数据库
+     * @date:2021/12/8
+     **/
     @FXML
     void loadingStudentOnAction(ActionEvent event) {
-        if(csvFileTextField.getText().isEmpty()) return;
+        if (csvFileTextField.getText().isEmpty()) return;
         String fileName = csvFileTextField.getText();
-        fileName = fileName.replace('\\','/');
+        fileName = fileName.replace('\\', '/');
         System.out.println(fileName);
         String sql = "load data local infile " + "'" + fileName + "'" +
                 " into table student_user fields terminated by',' lines terminated by '\\r\\n';";
@@ -101,48 +134,113 @@ public class AdminController implements Initializable {
         System.out.println("导入数据成功！共导入 " + loadDateCount + "条数据");
     }
 
-    private void iniTableView() {
-        formList.setItems(AdminComonData.getData());
-        DBConnection connectNow = new DBConnection();
-        Connection connectDB = connectNow.getConnection();
-        String showAll = "SELECT * FROM student_user;";
-        try {
-            Statement statement = connectDB.createStatement();
-            ResultSet ret = statement.executeQuery(showAll);
-            while(ret.next()) {
-                String stu_id = ret.getString(1);
-                String forClass = ret.getString(2);
-                String stu_name = ret.getString(3);
-                AdminTableView temp = new AdminTableView(stu_id, forClass, stu_name);
-                AdminComonData.getData().add(temp);
-            }
-            System.out.println("当前学生信息数：" + AdminComonData.getData().size());
-        }
-        catch(Exception e) {
-            e.printStackTrace();
-            e.getCause();
-        }
-        System.out.println(AdminComonData.getData().size());
-        column_index.setCellFactory(new Callback<TableColumn<AdminTableView,String>,TableCell<AdminTableView,String>>(){
+    private void iniTreeTableView() {
+        JFXTreeTableColumn<AdminViewData, String> studentIdColumn = new JFXTreeTableColumn<>("学号");
+        JFXTreeTableColumn<AdminViewData, String> forClassColumn = new JFXTreeTableColumn<>("班级");
+        JFXTreeTableColumn<AdminViewData, String> studentNameColumn = new JFXTreeTableColumn<>("姓名");
+        JFXTreeTableColumn<AdminViewData, Number> totalGradeColumn = new JFXTreeTableColumn<>("总成绩");
+        JFXTreeTableColumn<AdminViewData, Number> classRankColumn = new JFXTreeTableColumn<>("班级排名");
+        JFXTreeTableColumn<AdminViewData, Number> majorRankColumn = new JFXTreeTableColumn<>("专业排名");
+        iniStringColumn(studentIdColumn, forClassColumn, studentNameColumn);
+        iniNumberColumn(totalGradeColumn, classRankColumn, majorRankColumn);
+
+        // 载入数据
+        loadViewDate();
+
+        TreeItem<AdminViewData> root = new RecursiveTreeItem<>(adminViewData, RecursiveTreeObject::getChildren);
+        JFXTreeTableView<AdminViewData> treeView = new JFXTreeTableView<>(root);
+        treeView.setShowRoot(false);
+        treeView.getColumns().setAll(studentIdColumn, forClassColumn, studentNameColumn, totalGradeColumn, classRankColumn, majorRankColumn);
+        treeView.prefWidthProperty().bind(centerFlowPane.widthProperty());
+        treeView.prefHeightProperty().bind(centerFlowPane.heightProperty());
+        centerFlowPane.getChildren().add(treeView);
+
+        treeView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
             @Override
-            public TableCell<AdminTableView, String> call(TableColumn<AdminTableView, String> param) {
-                return new TableCell<AdminTableView, String>() {
-                    @Override
-                    protected void updateItem(String item, boolean empty) {
-                        super.updateItem(item, empty);
-                        if(getIndex()  < AdminComonData.getData().size())
-                            setText(String.valueOf(getIndex() + 1));
-                    }
-                };
+            public void changed(ObservableValue observable, Object oldValue, Object newValue) {
+                TreeItem<AdminViewData> currentSelectItem = (TreeItem<AdminViewData>) newValue;
+                if (currentSelectItem != null) {
+                    clickedRow = currentSelectItem.getValue();
+                }
             }
         });
-        columnStuId.setCellValueFactory(new PropertyValueFactory<>("stu_id"));
-        columnStuClass.setCellValueFactory(new PropertyValueFactory<>("forClass"));
-        columnStuName.setCellValueFactory(new PropertyValueFactory<>("stuName"));
-        columnStuTotalGrade.setCellValueFactory(new PropertyValueFactory<>("totalGrade"));
-        columnStuClassRank.setCellValueFactory(new PropertyValueFactory<>("classRank"));
-        columnStuMajorRank.setCellValueFactory(new PropertyValueFactory<>("majorRank"));
+        // 检索表treeView中的数据
+        searchTextField.textProperty().addListener((o, oldVal, newVal) -> {
+            treeView.setPredicate(adminViewProp -> {
+                AdminViewData data = adminViewProp.getValue();
+                return data.stu_id.get().contains(newVal)
+                        || data.forClass.get().contains(newVal)
+                        || data.stuName.get().contains(newVal);
+            });
+        });
+
+        isGroupTogButton.selectedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> observableValue, Boolean aBoolean, Boolean t1) {
+                if(t1) {
+                    new Thread(() -> treeView.group(forClassColumn)).start();
+                }
+                else treeView.unGroup(forClassColumn);
+            }
+        });
+    }
+    /**
+    * @param: [com.jfoenix.controls.JFXTreeTableColumn<com.krill_song.AdminViewData,java.lang.Number>...]
+    * @return: void
+    * @description: 初始化表中的Number类及其子类的属性列
+    * @date:2021/12/8
+    **/
+    private void iniNumberColumn(JFXTreeTableColumn<AdminViewData, Number> ...column) {
+        for (int i = 0; i < column.length; i++) {
+            column[i].setPrefWidth(150);
+            int finalI = i;
+            column[i].setCellValueFactory((TreeTableColumn.CellDataFeatures<AdminViewData, Number> param) -> {
+                if (column[finalI].validateValue(param)) {
+                    return param.getValue().getValue().getIndexForInt(finalI);
+                } else {
+                    return column[finalI].getComputedValue(param);
+                }
+            });
+        }
+    }
+    /**
+    * @param: [com.jfoenix.controls.JFXTreeTableColumn<com.krill_song.AdminViewData,java.lang.String>...]
+    * @return: void
+    * @description: 初始化表中的String类的属性列
+    * @date:2021/12/8
+    **/
+    private void iniStringColumn(JFXTreeTableColumn<AdminViewData, String>... column) {
+        for (int i = 0; i < column.length; i++) {
+            column[i].setPrefWidth(150);
+            if (i > 0) column[i].setSortable(false);
+            int finalI = i;
+            column[i].setCellValueFactory((TreeTableColumn.CellDataFeatures<AdminViewData, String> param) -> {
+                if (column[finalI].validateValue(param)) {
+                    return param.getValue().getValue().getIndex(finalI);
+                } else {
+                    return column[finalI].getComputedValue(param);
+                }
+            });
+        }
     }
 
-
+    /**
+    * @param: []
+    * @return: void
+    * @description: 载入初始数据
+    * @date:2021/12/8
+    **/
+    private void loadViewDate() {
+        String sql = "select *, RANK() OVER(PARTITION BY for_class ORDER BY total_grade DESC) AS classRank, RANK() OVER(ORDER BY total_grade DESC) AS majorRank from student_user;";
+        try {
+            ArrayList<AdminViewData> list = (ArrayList<AdminViewData>) DBCPUtil.queryPlural(sql);
+            for (AdminViewData data : list) {
+                if(!adminViewData.contains(data)) adminViewData.add(data);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
+
+

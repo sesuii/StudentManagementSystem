@@ -1,35 +1,55 @@
 package com.krill_song;
 
-import all_users.StudentUser;
+import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
-
-import java.io.Serializable;
+import javafx.beans.value.ObservableValue;
 
 /*________________________
  @ Author: _Krill
  @ Data: 2021/11/1 23:45 
  @ Version: 1.0
 __________________________*/
-public class AdminTableView implements Serializable {
+public class AdminViewData extends RecursiveTreeObject<AdminViewData> {
     SimpleStringProperty stu_id;
     SimpleStringProperty stuName;
     SimpleStringProperty forClass;
     SimpleIntegerProperty totalGrade;
     SimpleIntegerProperty classRank;
     SimpleIntegerProperty majorRank;
-    public AdminTableView() {
-    }
-    public AdminTableView(String stu_id, String forClass, String stuName) {
+
+    public AdminViewData(String stu_id, String forClass, String stuName, int totalGrade, int classRank, int majorRank) {
         this.stu_id = new SimpleStringProperty(stu_id);
         this.forClass = new SimpleStringProperty(forClass);
         this.stuName = new SimpleStringProperty(stuName);
-        totalGrade = new SimpleIntegerProperty(0);
-        classRank = new SimpleIntegerProperty(0);
-        majorRank = new SimpleIntegerProperty( 0);
+        if(totalGrade == -1) this.totalGrade = null;
+            else this.totalGrade = new SimpleIntegerProperty(totalGrade);
+        if(classRank == -1) this.classRank = null;
+            else this.classRank = new SimpleIntegerProperty(classRank);
+        if(majorRank == -1) this.majorRank = null;
+            else this.majorRank = new SimpleIntegerProperty(majorRank);
+    }
+    public ObservableValue<String> getIndex(int finalI) {
+        switch (finalI) {
+            case 0:
+                return stu_id;
+            case 1:
+                return forClass;
+            case 2:
+                return stuName;
+            default:
+                return null;
+        }
     }
 
+    public ObservableValue<Number> getIndexForInt(int finalI) {
+        switch (finalI){
+            case 0: return totalGrade;
+            case 1: return classRank;
+            case 2: return majorRank;
+            default: return null;
+        }
+    }
     public String getStu_id() {
         return stu_id.get();
     }
@@ -102,5 +122,15 @@ public class AdminTableView implements Serializable {
         this.majorRank.set(majorRank);
     }
 
-
+    @Override
+    public String toString() {
+        return "AdminViewData{" +
+                "stu_id=" + stu_id +
+                ", stuName=" + stuName +
+                ", forClass=" + forClass +
+                ", totalGrade=" + totalGrade +
+                ", classRank=" + classRank +
+                ", majorRank=" + majorRank +
+                '}';
+    }
 }

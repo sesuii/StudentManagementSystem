@@ -24,21 +24,16 @@ import javafx.event.ActionEvent;
 public class LoginController implements Initializable {
     @FXML
     private JFXTextField accountField;
-
     @FXML
     private JFXPasswordField passwordField;
-
     @FXML
     private JFXComboBox<String> chooseIdentifybox;
-
     @FXML
     private JFXButton loginButton;
-
     @FXML
     private Label loginNote;
-
     @FXML
-    private void loginButtonOnAction(ActionEvent event) {
+    private void loginButtonOnAction(ActionEvent event) throws Exception {
         if (!accountField.getText().isEmpty() && !passwordField.getText().isEmpty() && !chooseIdentifybox.getItems().isEmpty()) {
             validateLogin();
         } else {
@@ -51,7 +46,7 @@ public class LoginController implements Initializable {
     * @description: 验证身份（账号和密码是否正确
     * @date:2021/12/7
     **/
-    private void validateLogin() {
+    private void validateLogin() throws Exception {
         String indentify = chooseIdentifybox.getSelectionModel().getSelectedItem();
         String loadFxml = null;
         if(indentify == "管理员") {

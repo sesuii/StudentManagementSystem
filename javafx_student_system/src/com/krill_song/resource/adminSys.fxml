@@ -1,42 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXTextField?>
+<?import com.jfoenix.controls.JFXToggleButton?>
+<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" styleClass="gradient-background" stylesheets="@../../../styles/studentStyle.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.krill_song.AdminController">
-   <center>
-      <AnchorPane prefHeight="720.0" prefWidth="980.0" styleClass="container" stylesheets="@../../../styles/studentStyle.css" BorderPane.alignment="CENTER">
-         <children>
-            <TableView fx:id="formList" layoutX="76.0" layoutY="78.0" prefHeight="720.0" prefWidth="980.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-              <columns>
-                  <TableColumn fx:id="column_index" maxWidth="200.0" minWidth="15.0" prefWidth="120.0" text="index" />
-                <TableColumn fx:id="columnStuId" editable="false" maxWidth="200.0" minWidth="15.0" prefWidth="120.0" text="学号" />
-                  <TableColumn fx:id="columnStuClass" editable="false" maxWidth="200.0" prefWidth="120.0" sortable="false" text="班级" />
-                  <TableColumn fx:id="columnStuName" editable="false" maxWidth="200.0" prefWidth="120.0" sortable="false" text="姓名" />
-                  <TableColumn fx:id="columnStuTotalGrade" editable="false" maxWidth="200.0" prefWidth="120.0" text="总成绩" />
-                  <TableColumn fx:id="columnStuClassRank" editable="false" maxWidth="200.0" prefWidth="120.0" sortable="false" text="班级排名" />
-                  <TableColumn fx:id="columnStuMajorRank" editable="false" maxWidth="200.0" prefWidth="120.0" text="专业排名" />
-              </columns>
-            </TableView>
-         </children>
-         <BorderPane.margin>
-            <Insets bottom="10.0" right="10.0" />
-         </BorderPane.margin>
-      </AnchorPane>
-   </center>
    <top>
       <HBox prefHeight="61.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
@@ -53,40 +32,75 @@
                   <Insets right="5.0" top="30.0" />
                </HBox.margin>
             </Pane>
-            <ImageView accessibleRole="BUTTON" fitHeight="48.0" fitWidth="42.0" nodeOrientation="INHERIT" opacity="0.5" pickOnBounds="true" preserveRatio="true" styleClass="shadow" HBox.hgrow="ALWAYS">
-               <image>
-                  <Image url="@../../../images/设置.png" />
-               </image>
+            <JFXButton prefHeight="50.0" prefWidth="100.0" styleClass="shadow" stylesheets="@../../../styles/studentStyle.css" text="查 看 日 志" textFill="#6ef5ef">
                <HBox.margin>
-                  <Insets left="10.0" right="30.0" top="10.0" />
+                  <Insets right="10.0" top="5.0" />
                </HBox.margin>
-            </ImageView>
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </JFXButton>
          </children>
       </HBox>
    </top>
    <left>
       <VBox prefHeight="659.0" prefWidth="285.0" BorderPane.alignment="CENTER">
          <children>
-            <HBox prefHeight="103.0" prefWidth="265.0" styleClass="dialog-accept" stylesheets="@../../../styles/studentStyle.css">
+            <VBox prefHeight="261.0" prefWidth="265.0" styleClass="container" stylesheets="@../../../styles/studentStyle.css">
                <VBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" />
                </VBox.margin>
                <children>
-                  <JFXTextField labelFloat="true" prefHeight="23.0" prefWidth="175.0" promptText="检 索" unFocusColor="#101aa8" HBox.hgrow="ALWAYS">
-                     <HBox.margin>
-                        <Insets left="20.0" right="20.0" top="25.0" />
-                     </HBox.margin>
-                  </JFXTextField>
+                  <HBox prefHeight="103.0" prefWidth="265.0" stylesheets="@../../../styles/studentStyle.css">
+                     <children>
+                        <JFXTextField fx:id="searchTextField" labelFloat="true" prefHeight="23.0" prefWidth="175.0" promptText="检 索" unFocusColor="#101aa8" HBox.hgrow="ALWAYS">
+                           <HBox.margin>
+                              <Insets left="20.0" right="20.0" top="15.0" />
+                           </HBox.margin>
+                        </JFXTextField>
+                     </children>
+                     <styleClass>
+                        <String fx:value="dialog-accept" />
+                        <String fx:value="container" />
+                     </styleClass>
+                  </HBox>
+                  <Label alignment="CENTER" onMouseClicked="#deleteStudentOnAction" prefHeight="100.0" prefWidth="265.0" styleClass="button-container-mouse-moved" stylesheets="@../../../styles/studentStyle.css" text="删 除 学 生" textAlignment="CENTER" textFill="#ededed" VBox.vgrow="ALWAYS">
+                     <font>
+                        <Font size="22.0" />
+                     </font>
+                  </Label>
                </children>
-            </HBox>
-            <VBox prefHeight="384.0" prefWidth="265.0" styleClass="container" stylesheets="@../../../styles/studentStyle.css">
+            </VBox>
+            <VBox prefHeight="439.0" prefWidth="265.0" styleClass="container" stylesheets="@../../../styles/studentStyle.css">
                <children>
-                  <JFXComboBox focusColor="#315bd9" prefHeight="33.0" prefWidth="185.0" promptText=" 查 看 各 班 成 绩" styleClass="dialog-accept" stylesheets="@../../../styles/studentStyle.css" unFocusColor="#c3c3c3">
-                     <VBox.margin>
-                        <Insets bottom="30.0" left="40.0" right="10.0" top="35.0" />
-                     </VBox.margin>
-                  </JFXComboBox>
-                  <HBox prefHeight="63.0" prefWidth="265.0" styleClass="button-container-mouse-moved" stylesheets="@../../../styles/studentStyle.css">
+                  <HBox layoutX="10.0" layoutY="10.0" prefHeight="60.0" prefWidth="265.0" styleClass="button-container-mouse-moved" stylesheets="@../../../styles/studentStyle.css">
+                     <children>
+                        <JFXTextField fx:id="newStudentIdText" labelFloat="true" prefWidth="200.0" promptText="学生学号" unFocusColor="#101aa8">
+                           <HBox.margin>
+                              <Insets bottom="10.0" left="30.0" right="10.0" top="20.0" />
+                           </HBox.margin>
+                        </JFXTextField>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="60.0" prefWidth="265.0" styleClass="button-container-mouse-moved" stylesheets="@../../../styles/studentStyle.css">
+                     <children>
+                        <JFXTextField fx:id="newStudentText" labelFloat="true" prefHeight="23.0" prefWidth="200.0" promptText="学生姓名" unFocusColor="#101aa8">
+                           <HBox.margin>
+                              <Insets bottom="10.0" left="30.0" right="10.0" top="20.0" />
+                           </HBox.margin>
+                        </JFXTextField>
+                     </children>
+                  </HBox>
+                  <HBox layoutX="10.0" layoutY="63.0" prefHeight="42.0" prefWidth="265.0" styleClass="button-container-mouse-moved" stylesheets="@../../../styles/studentStyle.css">
+                     <children>
+                        <JFXComboBox fx:id="NewStudentClassBox" prefHeight="41.0" prefWidth="202.0" promptText="班级" styleClass="dialog-accept" stylesheets="@../../../styles/studentStyle.css" unFocusColor="#101aa8">
+                           <HBox.margin>
+                              <Insets bottom="10.0" left="30.0" right="10.0" top="10.0" />
+                           </HBox.margin>
+                        </JFXComboBox>
+                     </children>
+                  </HBox>
+                  <HBox layoutX="10.0" layoutY="10.0" onMouseClicked="#addNewOnAction" prefHeight="63.0" prefWidth="265.0" styleClass="button-container-mouse-moved" stylesheets="@../../../styles/studentStyle.css">
                      <children>
                         <Label alignment="CENTER" prefHeight="101.0" prefWidth="265.0" styleClass="button-container-mouse-moved" stylesheets="@../../../styles/studentStyle.css" text="添 加 学 生" textAlignment="CENTER" textFill="#ededed">
                            <font>
@@ -95,35 +109,45 @@
                         </Label>
                      </children>
                   </HBox>
+                  <Pane maxHeight="-Infinity" prefHeight="1.0" prefWidth="200.0" styleClass="line-color" stylesheets="@../../../styles/studentStyle.css">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </Pane>
                   <HBox prefHeight="63.0" prefWidth="265.0" styleClass="button-container-mouse-moved" stylesheets="@../../../styles/studentStyle.css">
                      <children>
-                        <Label alignment="CENTER" prefHeight="101.0" prefWidth="265.0" styleClass="button-container-mouse-moved" stylesheets="@../../../styles/studentStyle.css" text="删 除 学 生" textAlignment="CENTER" textFill="#ededed">
+                        <JFXToggleButton fx:id="isGroupTogButton" prefWidth="284.0" text="按 班 级 分 组" textFill="WHITE" toggleColor="#b5cffe" toggleLineColor="#89a7d4" HBox.hgrow="ALWAYS">
                            <font>
                               <Font size="22.0" />
                            </font>
-                        </Label>
+                           <graphic>
+                              <HBox prefHeight="61.0" prefWidth="200.0">
+                                 <children>
+                                    <Label alignment="CENTER" prefHeight="60.0" prefWidth="171.0" styleClass="shadow" stylesheets="@../../../styles/studentStyle.css" text="管 理 员 界 面" textFill="#6ef5ef">
+                                       <font>
+                                          <Font size="21.0" />
+                                       </font>
+                                    </Label>
+                                    <JFXButton prefHeight="50.0" prefWidth="100.0" styleClass="shadow" stylesheets="@../../../styles/studentStyle.css" text="查 看 日 志" textFill="#6ef5ef">
+                                       <HBox.margin>
+                                          <Insets right="10.0" top="5.0" />
+                                       </HBox.margin>
+                                       <font>
+                                          <Font name="System Bold" size="14.0" />
+                                       </font>
+                                    </JFXButton>
+                                 </children>
+                              </HBox>
+                           </graphic>
+                        </JFXToggleButton>
                      </children>
                   </HBox>
-                  <HBox prefHeight="63.0" prefWidth="265.0" styleClass="button-container-mouse-moved" stylesheets="@../../../styles/studentStyle.css">
-                     <children>
-                        <Label alignment="CENTER" prefHeight="101.0" prefWidth="265.0" styleClass="button-container-mouse-moved" stylesheets="@../../../styles/studentStyle.css" text="查 看 日 志" textAlignment="CENTER" textFill="#ededed">
-                           <font>
-                              <Font size="22.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </HBox>
-                  <Label alignment="CENTER" prefHeight="73.0" prefWidth="265.0" styleClass="button-container-mouse-moved" stylesheets="@../../../styles/studentStyle.css" text="刷 新" textAlignment="CENTER" textFill="#ededed">
-                     <font>
-                        <Font size="22.0" />
-                     </font>
-                  </Label>
                </children>
                <VBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" />
                </VBox.margin>
             </VBox>
-            <VBox prefHeight="178.0" prefWidth="265.0" styleClass="container" stylesheets="@../../../styles/studentStyle.css">
+            <VBox prefHeight="314.0" prefWidth="265.0" styleClass="container" stylesheets="@../../../styles/studentStyle.css">
                <children>
                   <HBox prefHeight="81.0" prefWidth="265.0" stylesheets="@../../../styles/studentStyle.css">
                      <children>
@@ -153,6 +177,11 @@
                         <Insets left="10.0" />
                      </VBox.margin>
                   </Button>
+                  <Label alignment="CENTER" onMouseClicked="#refreshViewOnAction" prefHeight="73.0" prefWidth="265.0" styleClass="button-container-mouse-moved" stylesheets="@../../../styles/studentStyle.css" text="刷 新" textAlignment="CENTER" textFill="#ededed">
+                     <font>
+                        <Font size="22.0" />
+                     </font>
+                  </Label>
                </children>
                <VBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" />
@@ -161,4 +190,11 @@
          </children>
       </VBox>
    </left>
+   <center>
+      <FlowPane fx:id="centerFlowPane" prefHeight="200.0" prefWidth="200.0" styleClass="container" stylesheets="@../../../styles/studentStyle.css" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" />
+         </BorderPane.margin>
+      </FlowPane>
+   </center>
 </BorderPane>

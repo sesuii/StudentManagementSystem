@@ -65,26 +65,26 @@ public class demo extends Application {
         });
 
 
-        ageColumn.setCellFactory((TreeTableColumn<User, String> param) -> new GenericEditableTreeTableCell<>(
-                new TextFieldEditorBuilder()));
-        ageColumn.setOnEditCommit((CellEditEvent<User, String> t) -> t.getTreeTableView()
-                .getTreeItem(t.getTreeTablePosition()
-                        .getRow())
-                .getValue().age.set(t.getNewValue()));
-
-        empColumn.setCellFactory((TreeTableColumn<User, String> param) -> new GenericEditableTreeTableCell<>(
-                new TextFieldEditorBuilder()));
-        empColumn.setOnEditCommit((CellEditEvent<User, String> t) -> t.getTreeTableView()
-                .getTreeItem(t.getTreeTablePosition()
-                        .getRow())
-                .getValue().userName.set(t.getNewValue()));
-
-        deptColumn.setCellFactory((TreeTableColumn<User, String> param) -> new GenericEditableTreeTableCell<>(
-                new TextFieldEditorBuilder()));
-        deptColumn.setOnEditCommit((CellEditEvent<User, String> t) -> t.getTreeTableView()
-                .getTreeItem(t.getTreeTablePosition()
-                        .getRow())
-                .getValue().department.set(t.getNewValue()));
+//        ageColumn.setCellFactory((TreeTableColumn<User, String> param) -> new GenericEditableTreeTableCell<>(
+//                new TextFieldEditorBuilder()));
+//        ageColumn.setOnEditCommit((CellEditEvent<User, String> t) -> t.getTreeTableView()
+//                .getTreeItem(t.getTreeTablePosition()
+//                        .getRow())
+//                .getValue().age.set(t.getNewValue()));
+//
+//        empColumn.setCellFactory((TreeTableColumn<User, String> param) -> new GenericEditableTreeTableCell<>(
+//                new TextFieldEditorBuilder()));
+//        empColumn.setOnEditCommit((CellEditEvent<User, String> t) -> t.getTreeTableView()
+//                .getTreeItem(t.getTreeTablePosition()
+//                        .getRow())
+//                .getValue().userName.set(t.getNewValue()));
+//
+//        deptColumn.setCellFactory((TreeTableColumn<User, String> param) -> new GenericEditableTreeTableCell<>(
+//                new TextFieldEditorBuilder()));
+//        deptColumn.setOnEditCommit((CellEditEvent<User, String> t) -> t.getTreeTableView()
+//                .getTreeItem(t.getTreeTablePosition()
+//                        .getRow())
+//                .getValue().department.set(t.getNewValue()));
 
 
         // data
@@ -160,7 +160,6 @@ public class demo extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-
     private static final class User extends RecursiveTreeObject<User> {
         final StringProperty userName;
         final StringProperty age;
