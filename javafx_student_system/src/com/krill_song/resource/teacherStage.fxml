@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXTreeTableView?>
 <?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
@@ -188,6 +189,13 @@
          <BorderPane.margin>
             <Insets bottom="10.0" top="10.0" />
          </BorderPane.margin>
+         <children>
+            <JFXTreeTableView prefHeight="657.0" prefWidth="770.0">
+               <VBox.margin>
+                  <Insets right="10.0" />
+               </VBox.margin>
+            </JFXTreeTableView>
+         </children>
       </VBox>
    </center>
 </BorderPane>

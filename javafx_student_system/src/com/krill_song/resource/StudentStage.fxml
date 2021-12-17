@@ -244,9 +244,45 @@
                      <children>
                         <Label alignment="CENTER" prefHeight="29.0" prefWidth="132.0" styleClass="shadow" stylesheets="@../../../styles/studentStyle.css" text="统计" textAlignment="CENTER" textFill="#6ef5ef">
                            <font>
-                              <Font size="18.0" />
+                              <Font size="24.0" />
                            </font>
                         </Label>
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Label styleClass="shadow" stylesheets="@../../../styles/studentStyle.css" text="总 分">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                 </HBox.margin>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox layoutX="10.0" layoutY="42.0" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Label styleClass="shadow" stylesheets="@../../../styles/studentStyle.css" text="班 级 排 名">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                 </HBox.margin>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox layoutX="10.0" layoutY="142.0" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Label styleClass="shadow" stylesheets="@../../../styles/studentStyle.css" text="专 业 排 名">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                 </HBox.margin>
+                              </Label>
+                           </children>
+                        </HBox>
                      </children>
                   </VBox>
                </children>

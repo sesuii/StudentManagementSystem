@@ -66,9 +66,9 @@ public class AdminController implements Initializable {
     void addNewOnAction(MouseEvent event) {
         if(NewStudentClassBox.getSelectionModel().isEmpty() || newStudentText.getText().isEmpty() || newStudentIdText.getText().isEmpty()) return;
         String forClass = NewStudentClassBox.getSelectionModel().getSelectedItem();
-        AdminViewData newData = new AdminViewData(newStudentIdText.getText(), newStudentText.getText(), forClass, -1, -1, -1);
+        AdminViewData newData = new AdminViewData(newStudentIdText.getText(), forClass, newStudentText.getText(), -1, -1, -1);
         adminViewData.add(newData);
-        String sql = "insert into student_user() Values(?, ?, ?, ?, ?);";
+        String sql = "insert into student_user Values(?, ?, ?, ?, ?);";
         try {
             int updateData = DBCPUtil.insert(sql, newData);
             System.out.println("添加学生数：" + updateData);
@@ -87,13 +87,13 @@ public class AdminController implements Initializable {
     **/
     @FXML
     void deleteStudentOnAction(MouseEvent event) {
-        if(clickedRow != null && adminViewData.contains(clickedRow)) adminViewData.remove(clickedRow);
         String sql = "delete from student_user where account_id = ?";
         try {
             DBCPUtil.delete(sql, clickedRow);
         } catch (Exception e) {
             e.printStackTrace();
         }
+        if(clickedRow != null && adminViewData.contains(clickedRow)) adminViewData.remove(clickedRow);
     }
     @FXML
     void refreshViewOnAction(MouseEvent event) {
@@ -155,13 +155,10 @@ public class AdminController implements Initializable {
         treeView.prefHeightProperty().bind(centerFlowPane.heightProperty());
         centerFlowPane.getChildren().add(treeView);
         treeView.getStylesheets().add(AdminController.class.getResource("/styles/studentStyle.css").toExternalForm());
-        treeView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
-            @Override
-            public void changed(ObservableValue observable, Object oldValue, Object newValue) {
-                TreeItem<AdminViewData> currentSelectItem = (TreeItem<AdminViewData>) newValue;
-                if (currentSelectItem != null) {
-                    clickedRow = currentSelectItem.getValue();
-                }
+        treeView.getSelectionModel().selectedItemProperty().addListener((ChangeListener) (observable, oldValue, newValue) -> {
+            TreeItem<AdminViewData> currentSelectItem = (TreeItem<AdminViewData>) newValue;
+            if (currentSelectItem != null) {
+                clickedRow = currentSelectItem.getValue();
             }
         });
         // 检索表treeView中的数据
@@ -233,10 +230,9 @@ public class AdminController implements Initializable {
     private void loadViewDate() {
         String sql = "select *, RANK() OVER(PARTITION BY for_class ORDER BY total_grade DESC) AS classRank, RANK() OVER(ORDER BY total_grade DESC) AS majorRank from student_user;";
         try {
+            adminViewData.removeAll();
             ArrayList<AdminViewData> list = (ArrayList<AdminViewData>) DBCPUtil.queryPlural(sql);
-            for (AdminViewData data : list) {
-                if(!adminViewData.contains(data)) adminViewData.add(data);
-            }
+            adminViewData.addAll(list);
         } catch (Exception e) {
             e.printStackTrace();
         }

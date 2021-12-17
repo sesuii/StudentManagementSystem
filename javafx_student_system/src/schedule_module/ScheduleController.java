@@ -81,7 +81,7 @@ public class ScheduleController implements Initializable {
             }
         }
         populateDate(YearMonth.now());
-
+        // 对查看日程列表设置监听，获取当前点击日程的序列号
         listViewSchedule.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
