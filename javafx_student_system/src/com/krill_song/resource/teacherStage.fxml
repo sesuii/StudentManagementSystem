@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" styleClass="gradient-background" stylesheets="@../../../styles/studentStyle.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" styleClass="gradient-background" stylesheets="@../../../styles/studentStyle.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.krill_song.teacherStageController">
    <opaqueInsets>
       <Insets />
    </opaqueInsets>
@@ -110,7 +110,7 @@
                         <Insets top="10.0" />
                      </VBox.margin>
                   </HBox>
-                  <HBox prefHeight="100.0" prefWidth="200.0" styleClass="button-container-mouse-moved" stylesheets="@../../../styles/studentStyle.css">
+                  <HBox fx:id="setActivities" accessibleRole="BUTTON" onMouseClicked="#setActivitiesOnAction" prefHeight="100.0" prefWidth="200.0" styleClass="button-container-mouse-moved" stylesheets="@../../../styles/studentStyle.css">
                      <children>
                         <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true" styleClass="shadow">
                            <image>
